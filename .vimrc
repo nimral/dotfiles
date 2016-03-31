@@ -1,149 +1,85 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
-
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
-
-" Added
-Plugin 'rust-lang/rust.vim'
-
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-"Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-"Plugin 'L9'
-" Git plugin not hosted on GitHub
-"Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-"Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-"Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Avoid a name conflict with L9
-"Plugin 'user/L9', {'name': 'newL9'}
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-"filetype plugin indent on    " required
-" To ignore plugin indent changes, instead use:
-filetype plugin on
-"
-" Brief help
-" :PluginList       - lists configured plugins
-" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
-" :PluginSearch foo - searches for foo; append `!` to refresh local cache
-" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-"
-" see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-
-"Plugin 'Valloric/YouCompleteMe'
-
+"Mon Sep 20 13:57:35 CEST 2010
+"Thu Feb  9 22:31:42 CET 2012
 set nocompatible
 syn on
 set showcmd
 set mouse=a
-
-" indent new line as the previous one
 set autoindent
-
-" jump to matching string while I'm typing the pattern
 set incsearch
-
-set ignorecase " when searching
-set smartcase " but not when I use uppercase
-
-set wildignorecase "filename completion
-
-" don't highlight matching string
-set nohlsearch
-
-" show line numbers
 set number
-
 set wildchar=<Tab>
 set scrolloff=3
 set clipboard=unnamed
 set magic
-
-set autochdir " to the directory containing the file being edited
+set autochdir
+"set lazyredraw "udajne zrychli makra
 set noerrorbells
 set diffopt=vertical
 colorscheme darkblue
 
-" tell it to use an undo file
-set undofile
-" set a directory to store the undo history
-set undodir=$HOME/.vimundo/
+" Set some handy shorcuts for moving in tabs
+nnoremap <S-l> gt
+nnoremap <S-h> gT
 
-" show trailing whitespaces but not these just typed in insert mode
+set nohlsearch
+
+"nefunguje
+"set statusline=%n:\ %f%m%r%h%w\ [%Y,%{&fileencoding},%{&fileformat}]\ [%l-%L,%v][%p%%]
+"nefunguje
+set statusline=
+set statusline+=%h%1*%m%r%w%0*               " flags
+set statusline+=\[%{strlen(&ft)?&ft:'none'}, " filetype
+set statusline+=%{&encoding},                " encoding
+set statusline+=%{&fileformat}]              " file format
+if filereadable(expand("$VIM/vimfiles/plugin/vimbuddy.vim"))
+    set statusline+=\ %{VimBuddy()}          " vim buddy
+endif
+set statusline+=%=                           " right align
+set statusline+=%2*0x%-8B\                   " current char
+set statusline+=%-14.(%l,%c%V%)\ %<%P        " offset
+
+"show trailing whitespaces on not whitespaces-only lines but not that just typed in insert mode
 highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 match ExtraWhitespace /\s\+$/
-autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-autocmd InsertEnter * match ExtraWhitespace /\s\+\%#<!$/
-autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\(\S\)\@<=\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\(\S\)\@<=\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\(\S\)\@<=\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
-" how long tab is
-set tabstop=4
-" how many columns does << >> (un)indent
-set shiftwidth=4
-" spaces instead of tab
-set expandtab
+set tabstop=4 "jak velky tab je
+set shiftwidth=4 "kolik sloupcu odsadi >> <<
+set expandtab "vloz misto tabu mezery
 set backspace=2
-" 4 spaces can be deleted as one tab
-set softtabstop=4
-" when shifting a non-aligned set of lines, align them to the next tabstop
-set shiftround
-set hidden
+set softtabstop=4 "4 mezery jdou smazat jako tab
+"set noet neexpanduj tabelatory "ted nevim, jestli to chci?
+"syntax match Tab /\t/ "zvyrazni taby
+"hi Tab gui=underline guifg=blue ctermbg=blue
 
 filetype plugin on
 runtime plugin/matchparen.vim
 DoMatchParen
 
-" ctrl-s saves
 map  :w
 imap  :w
-
 "map k :%s/^\(.*\){\*}/{\1*}/g
 "map l :%s/^{\(.*\)\*}/\1{*}/g
 map k :%s/^\(.*\)\/\*C\*\//\/*\1C*\//g
 map l :%s/^\/\*\(.*\)C\*\//\1\/\*C\*\//g
 "map j I{A *}
-
-" F5 switches highlight search
 map <F5> :set hls!<bar>set hls?<CR>
 
-map <F3> :! ~/bin/xterm &<CR><CR>
-map ,w :%s/\s\+$//
-map ,s %a    $i<BS>
-map ,S ,s<Up>:s/, /,\r/g
-
-" ctrl-(shift)-tab switches tabs
+"tabulatory prepinaji panely
 map <C-Tab> gt
 imap <C-Tab> gt
 map <C-S-Tab> gT
 imap <C-S-Tab> gT
-
+set hidden
 
 map  :r ! date
 imap  :r ! date
-
-" F9 runs make
-map <F9> :w:make:cw
-imap <F9> :w:make:cw
-
-" save file with sudo when opened read-only
-cmap w!! %!sudo tee > /dev/null %
-
-"cmap json .! python -mjson.tool
+map  I\begin{frame}\end{frame}
+map <F9> :w:make
+imap <F9> :w:make
 
 "map p ]p
 "map P ]P
@@ -153,7 +89,7 @@ set go-=T
 set go-=m
 set go-=r
 
-" use viminfo file to remember lot of useful stuff
+"set viminfo='50,n~/vim/viminfo
 set viminfo='20,\"50,n~/.viminfo
 
 if has('gui_running')
@@ -163,76 +99,30 @@ else
     :autocmd InsertLeave * set nocul
 endif
 
-" do nothing
+
+"pageup
+
 map <silent> <PageUp> <nop>
 map <silent> <PageDown> <nop>
 imap <silent> <PageUp> <nop>
 imap <silent> <PageDown> <nop>
+
 map <silent> <F1> <nop>
 imap <silent> <F1> <nop>
 
 "ctags
 map <silent> gc <C-]>
-map gC :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-map gV :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
-" delete one pair of matching parentheses
 map ds %x``x
 
-autocmd BufNewFile *.html 0r ~/bin/novy.html
-autocmd BufNewFile *.latex 0r ~/bin/novy.latex
-autocmd BufNewFile *.cpp 0r ~/bin/novy.cpp
-autocmd BufNewFile *.py 0r ~/bin/novy.py
-autocmd BufNewFile *.sh 0r ~/bin/novy.sh
+
 autocmd BufNewFile *.latex :set lbr
 autocmd BufNewFile *.txt :set lbr
 
 autocmd BufReadPre *.txt :set lbr
 autocmd BufReadPre *.latex :set lbr
-autocmd BufReadPre *.tex :set lbr
 
 autocmd BufNewFile *.plog :set syn=prolog
 autocmd BufReadPre *.plog :set syn=prolog
-autocmd BufNewFile *.prolog :set syn=prolog
-autocmd BufReadPre *.prolog :set syn=prolog
-autocmd BufNewFile *.tex :set syn=tex
-autocmd BufReadPre *.tex :set syn=tex
 
-au BufRead,BufNewFile *.djt set filetype=django
-au BufRead,BufNewFile *.html set filetype=django
-au BufRead,BufNewFile *.html set syn=htmldjango
-au BufRead,BufNewFile *.md set filetype=markdown
-
-
-let mapleader = ","
-"let g:clang_snippets = 1
-"let g:clang_snippets_engine = 'clang_complete'
-
-"set conceallevel=2
-"set concealcursor=vin
-"let g:clang_snippets=1
-"let g:clang_conceal_snippets=1
-"" The single one that works with clang_complete
-"let g:clang_snippets_engine='clang_complete'
-
-"" Complete options (disable preview scratch window, longest removed to aways
-"" show menu)
-"set completeopt=menu,menuone
-
-"" Limit popup menu height
-"set pumheight=20
-
-"execute pathogen#infect()
-
-"let g:jedi#completions_command = "<C-N>"
-
-" CTRL-U and CTRL-W in insert mode cannot be undone.  Use CTRL-G u to first
-" break undo, so that we can undo those changes after inserting a line break.
-" For more info, see: http://vim.wikia.com/wiki/Recover_from_accidental_Ctrl-U
-inoremap <c-u> <c-g>u<c-u>
-inoremap <c-w> <c-g>u<c-w>
-
-let b:did_indent = 1
-
-
-"let g:ycm_global_ycm_extra_conf = '.ycm_extra_conf.py'
+set guifont=Monospace\ 12 

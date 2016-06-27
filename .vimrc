@@ -6,6 +6,8 @@ set showcmd
 set mouse=a
 set autoindent
 set incsearch
+set ignorecase " when searching
+set smartcase " but not when I use uppercase
 set number
 set wildchar=<Tab>
 set scrolloff=3
@@ -125,4 +127,6 @@ autocmd BufReadPre *.latex :set lbr
 autocmd BufNewFile *.plog :set syn=prolog
 autocmd BufReadPre *.plog :set syn=prolog
 
-set guifont=Monospace\ 12 
+set guifont=Monospace\ 12
+map <F3> :! ~/bin/xterm &<CR><CR>
+

@@ -56,6 +56,18 @@ if [ ${UID} -eq 0 ]; then
     PROMPT_COLOR='0;31m31'
 fi
 
+# enable programmable completion features (you don't need to enable
+# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
+# sources /etc/bash.bashrc).
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+# enable git completion with alias g="git"
+if [ -f ~/bin/git-completion.bash ]; then
+    . ~/bin/git-completion.bash
+    __git_complete g __git_main
+fi
+
 if type __git_ps1 1>/dev/null ; then
     # show git branch and state in prompt. Requires __git_ps1
     # example: matej@arthur ~/bin/dotfiles(master #) $
@@ -153,18 +165,8 @@ alias cal='ncal -M3'
 alias briss='java -jar ~/bin/briss-0.9/briss-0.9.jar'
 alias octave='octave --no-gui'
 alias pocasi='curl -4 http://wttr.in'
+alias sl='ls'
 
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
-# enable git completion with alias g="git"
-if [ -f ~/bin/git-completion.bash ]; then
-    . ~/bin/git-completion.bash
-    __git_complete g __git_main
-fi
 
 export PATH=$PATH:$HOME/bin
 

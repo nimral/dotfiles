@@ -76,7 +76,6 @@ set magic
 set autochdir " to the directory containing the file being edited
 set noerrorbells
 set diffopt=vertical
-colorscheme darkblue
 
 " tell it to use an undo file
 set undofile
@@ -157,10 +156,12 @@ set go-=r
 set viminfo='20,\"50,n~/.viminfo
 
 if has('gui_running')
+    colorscheme darkblue
 else
     hi CursorLine cterm=NONE ctermbg=black
     :autocmd InsertEnter * set cul
     :autocmd InsertLeave * set nocul
+    colorscheme torte
 endif
 
 " do nothing

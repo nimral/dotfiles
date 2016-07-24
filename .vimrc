@@ -17,7 +17,6 @@ set autochdir
 "set lazyredraw "udajne zrychli makra
 set noerrorbells
 set diffopt=vertical
-colorscheme darkblue
 
 " Set some handy shorcuts for moving in tabs
 nnoremap <S-l> gt
@@ -95,10 +94,12 @@ set go-=r
 set viminfo='20,\"50,n~/.viminfo
 
 if has('gui_running')
+    colorscheme darkblue
 else
     hi CursorLine cterm=NONE ctermbg=black
     :autocmd InsertEnter * set cul
     :autocmd InsertLeave * set nocul
+    colorscheme torte
 endif
 
 

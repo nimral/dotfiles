@@ -169,6 +169,7 @@ alias cal='ncal -M3'
 alias briss='java -jar ~/bin/briss-0.9/briss-0.9.jar'
 alias octave='octave --no-gui'
 alias pocasi='curl -4 http://wttr.in'
+alias sl='ls'
 
 
 export PATH=$PATH:$HOME/bin

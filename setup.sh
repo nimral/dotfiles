@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for a in .bash_profile .bashrc .gitconfig .vimrc .xinitrc .config/openbox/rc.xml .config/openbox/autostart ; do
+for a in .bash_profile .bashrc .gitconfig .vimrc .xinitrc .config/openbox/rc.xml .config/openbox/autostart .pdbrc ; do
     filename=$HOME/$a
     if [ -e $filename ] ; then
         if ! [ -L $filename ] ; then

@@ -68,6 +68,8 @@ if [ -f ~/bin/git-completion.bash ]; then
     __git_complete g __git_main
 fi
 
+
+
 if type __git_ps1 1>/dev/null ; then
     # show git branch and state in prompt. Requires __git_ps1
     # example: matej@arthur ~/bin/dotfiles(master #) $
@@ -135,6 +137,7 @@ aremove () {
 alias asearch='apt-cache search'
 alias aupdate='sudo apt-get update'
 alias aupgrade='sudo apt-get upgrade'
+alias aclean='sudo apt-get autoremove && sudo apt-get clean'
 
 alias fpcexe='wine "C:\\FPC\2.2.2\bin\i386-win32\fpc.exe"'
 alias lazexe='wine "C:\\lazarus\lazbuild.exe"'
@@ -144,11 +147,12 @@ alias g='git'
 alias gplusplus='g++ -std=c++11 -g -O0 -Wall -pedantic -pthread'
 alias dus='du | sort -n'
 alias bc='bc -q -l'
-alias fef='feh --magick-timeout "-1" --force-aliasing -F 2> /dev/null -A "cp %f ~/Obrázky/vyber" --action1 "gimp %f &" --action2 "mv %f \`cat\`" --action9 "feh --bg-fill `pwd`/%F" --action3 "echo %f"'
+alias fef='feh --magick-timeout "-1" --force-aliasing -F 2> /dev/null -A "mkdir -p vyber ; cp %f vyber" --action1 "gimp %f &" --action2 "mv %f \`cat\`" --action9 "feh --bg-fill `pwd`/%F" --action3 "echo %f"'
 alias feh='feh --magick-timeout "-1"'
 alias oowriter='libreoffice --writer'
 alias ooimpress='libreoffice --impress'
 alias oocalc='libreoffice --spreadsheet'
+alias lo='libreoffice'
 alias prename='perl-rename'
 alias okular='okular 2> /dev/null'
 alias py='python'
@@ -166,11 +170,23 @@ alias briss='java -jar ~/bin/briss-0.9/briss-0.9.jar'
 alias octave='octave --no-gui'
 alias pocasi='curl -4 http://wttr.in'
 alias sl='ls'
+alias mojeip="wget -q -O - 'http://mojeip.cz' | grep -oE '([0-9]+\.){3}[0-9]+' | head -1"
+
+pomucky () {
+    okular $HOME/downloads/pomucky_nano_1-1-1.pdf
+}
 
 
-export PATH=$PATH:$HOME/bin
+export PATH=$HOME/bin:$PATH
+export JAVA_HOME=/usr/
 
 #turn off ctrl-s
 stty -ixon
 
 umask 077
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/home/matej/.sdkman"
+[[ -s "/home/matej/.sdkman/bin/sdkman-init.sh" ]] && source "/home/matej/.sdkman/bin/sdkman-init.sh"
+
+export PYTHONPATH=$PYTHONPATH:/home/matej/mff/diplomka/cleverhans/

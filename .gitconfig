@@ -12,13 +12,19 @@
 [alias]
         graphviz = "!f() { echo 'digraph git {' ; git log --pretty='format:  %h -> { %p }' \"$@\" | sed 's/[0-9a-f][0-9a-f]*/\"&\"/g' ; echo '}'; }; f"
     l = log
+    ls = log --stat
     d = diff
+    dc = diff --cached
+    dw = diff --word-diff
+    dcw = diff --cached --word-diff
     sh = show
     co = checkout
     ci = commit
     s = status
     br = branch
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+    mt = mergetool
+    st = status -uno
 [push]
 	default = simple
 [credential]

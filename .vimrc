@@ -12,6 +12,7 @@ Plugin 'gmarik/Vundle.vim'
 
 " Added
 Plugin 'rust-lang/rust.vim'
+Plugin 'udalov/kotlin-vim'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
@@ -181,6 +182,15 @@ map gV :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " delete one pair of matching parentheses
 map ds %x``x
 
+" add empty line below
+map ,o moo`o
+" add empty line above
+map ,O moO`o
+
+" underline markdown style
+map == yyp:s/./=/g<CR>
+map =- yyp:s/./-/g<CR>
+
 autocmd BufNewFile *.html 0r ~/bin/novy.html
 autocmd BufNewFile *.latex 0r ~/bin/novy.latex
 autocmd BufNewFile *.cpp 0r ~/bin/novy.cpp
@@ -238,3 +248,5 @@ let b:did_indent = 1
 
 
 "let g:ycm_global_ycm_extra_conf = '.ycm_extra_conf.py'
+
+autocmd BufRead,BufNewFile /home/matej/Dokumenty/mam/mamweb2/mamweb/*.py setlocal ts=4 sw=4 expandtab backspace=2 softtabstop=4

@@ -27,6 +27,11 @@ DEFAULT_SESSION=openbox
 setxkbmap cz
 setxkbmap -option compose:caps
 xmodmap -e "keycode 94 = Shift_L"
+
+#pravý alt
+xmodmap -e "keycode 108 = Alt_R"
+xmodmap -e "add mod5 = Alt_R"
+
 xset dpms 120 130 300
 xset -b #vypne beep
 #(sleep 1 ; xfce4-panel) &

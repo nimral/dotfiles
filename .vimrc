@@ -14,6 +14,13 @@ Plugin 'gmarik/Vundle.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'udalov/kotlin-vim'
 
+Plugin 'Chiel92/vim-autoformat'
+" To disable the fallback to vim's indent file, retabbing and removing
+" trailing whitespace, set the following variables to 0.
+let g:autoformat_autoindent = 0
+let g:autoformat_retab = 0
+let g:autoformat_remove_trailing_spaces = 0
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo

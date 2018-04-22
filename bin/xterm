@@ -1,0 +1,2 @@
+#!/bin/bash
+/usr/bin/xterm +ai -fa monospace -fs 11 -bg black -fg grey -j "$@"

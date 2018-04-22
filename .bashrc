@@ -173,9 +173,18 @@ alias sl='ls'
 alias mojeip="wget -q -O - 'http://mojeip.cz' | grep -oE '([0-9]+\.){3}[0-9]+' | head -1"
 
 pomucky () {
-    okular $HOME/downloads/pomucky_nano_1-1-1.pdf
+    okular $HOME/downloads/pomucky_nano_1-1-3.pdf
 }
 
+tensorboard_remote () {
+    echo "localhost:16006"
+    ssh -N -L 16006:127.0.0.1:6006 "$1"
+}
+
+jupyter_remote () {
+    echo "localhost:8888"
+    ssh -N -L 8888:127.0.0.1:8888 "$1"
+}
 
 export PATH=$HOME/bin:$PATH
 export JAVA_HOME=/usr/

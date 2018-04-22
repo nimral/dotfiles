@@ -13,6 +13,8 @@ Plugin 'gmarik/Vundle.vim'
 " Added
 Plugin 'rust-lang/rust.vim'
 Plugin 'udalov/kotlin-vim'
+Plugin 'nvie/vim-flake8'
+let g:flake8_cmd="/home/matej/bin/flake8"
 
 Plugin 'Chiel92/vim-autoformat'
 " To disable the fallback to vim's indent file, retabbing and removing
@@ -115,6 +117,8 @@ filetype plugin on
 runtime plugin/matchparen.vim
 DoMatchParen
 
+let mapleader = ","
+
 " ctrl-s saves
 map  :w
 imap  :w
@@ -133,6 +137,7 @@ map gb :! ~/bin/xterm -e git blame % &<CR><CR>
 map ,w :%s/\s\+$//
 map ,s %a    $i<BS>
 map ,S ,s<Up>:s/, /,\r/g
+nnoremap ,b :ls<CR>:b<Space>
 
 " ctrl-(shift)-tab switches tabs
 map <C-Tab> gt
@@ -194,14 +199,19 @@ map ,o moo`o
 " add empty line above
 map ,O moO`o
 
+" add python breakpoint
+map ,p oimport pdb; pdb.set_trace()
+
 " underline markdown style
 map == yyp:s/./=/g<CR>
 map =- yyp:s/./-/g<CR>
 
+" assign arguments to self inside python __init__
+let @i = '%wwwvt:€klyopa, :€ku€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl:'
+
 autocmd BufNewFile *.html 0r ~/bin/novy.html
 autocmd BufNewFile *.latex 0r ~/bin/novy.latex
 autocmd BufNewFile *.cpp 0r ~/bin/novy.cpp
-autocmd BufNewFile *.py 0r ~/bin/novy.py
 autocmd BufNewFile *.sh 0r ~/bin/novy.sh
 autocmd BufNewFile *.latex :set lbr
 autocmd BufNewFile *.txt :set lbr
@@ -223,7 +233,6 @@ au BufRead,BufNewFile *.html set syn=htmldjango
 au BufRead,BufNewFile *.md set filetype=markdown
 
 
-let mapleader = ","
 "let g:clang_snippets = 1
 "let g:clang_snippets_engine = 'clang_complete'
 
@@ -257,3 +266,6 @@ let b:did_indent = 1
 "let g:ycm_global_ycm_extra_conf = '.ycm_extra_conf.py'
 
 autocmd BufRead,BufNewFile /home/matej/Dokumenty/mam/mamweb2/mamweb/*.py setlocal ts=4 sw=4 expandtab backspace=2 softtabstop=4
+
+
+

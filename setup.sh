@@ -1,6 +1,7 @@
 #!/bin/bash
 
-for a in .bash_profile .bashrc .gitconfig .vimrc .xinitrc .config/openbox/rc.xml .config/openbox/autostart .pdbrc ; do
+# create links to dotfiles in this repository
+for a in .bash_profile .bashrc .gitconfig .vimrc .xinitrc .config/openbox/rc.xml .config/openbox/rc.xml.jinja2 .config/openbox/autostart .pdbrc ; do
     filename="$HOME/$a"
     if [ -e "$filename" ] ; then
         if ! cmp "$a" "$filename" >/dev/null 2>&1 ; then
@@ -18,8 +19,18 @@ for a in .bash_profile .bashrc .gitconfig .vimrc .xinitrc .config/openbox/rc.xml
         fi
         continue
     fi
+    dir=`echo "$a" | sed -r 's/[^/]*$//'`
+    if ! [ -z "$dir" ] ; then
+        mkdir -p $HOME/"$dir"
+    fi
     ln -s "`pwd -P`/$a" "$filename"
 done
+
+# set up Vundle
+if ! [ -e $HOME/.vim/bundle/Vundle.vim ] ; then
+    git clone https://github.com/VundleVim/Vundle.vim.git $HOME/.vim/bundle/Vundle.vim
+fi
+
 
 
 mkdir -p "$HOME/bin"

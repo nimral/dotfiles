@@ -11,6 +11,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Added
+Plugin 'davidhalter/jedi-vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'udalov/kotlin-vim'
 Plugin 'nvie/vim-flake8'

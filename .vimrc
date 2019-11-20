@@ -209,6 +209,8 @@ map =- yyp:s/./-/g<CR>
 " assign arguments to self inside python __init__
 let @i = '%wwwvt:€klyopa, :€ku€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl:'
 
+map ,s :bufdo :set noswapfile swapfile<CR>
+
 autocmd BufNewFile *.html 0r ~/bin/novy.html
 autocmd BufNewFile *.latex 0r ~/bin/novy.latex
 autocmd BufNewFile *.cpp 0r ~/bin/novy.cpp

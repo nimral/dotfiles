@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # create links to dotfiles in this repository
-for a in .bash_profile .bashrc .gitconfig .vimrc .xinitrc .config/openbox/rc.xml .config/openbox/rc.xml.jinja2 .config/openbox/autostart .pdbrc ; do
+for a in .bash_profile .bashrc .gitconfig .vimrc .xinitrc .xsessionrc .config/openbox/rc.xml .config/openbox/rc.xml.jinja2 .config/openbox/autostart .pdbrc ; do
     filename="$HOME/$a"
     if [ -e "$filename" ] ; then
         if ! cmp "$a" "$filename" >/dev/null 2>&1 ; then

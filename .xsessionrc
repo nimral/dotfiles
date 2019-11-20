@@ -1,0 +1,11 @@
+
+setxkbmap cz
+setxkbmap -option compose:caps
+xmodmap -e "keycode 94 = Shift_L"
+
+xset dpms 120 130 300
+xset -b #vypne beep
+
+~/.fehbg
+
+synclient MaxTapTime=0

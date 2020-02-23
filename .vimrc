@@ -136,7 +136,7 @@ map <F5> :set hls!<bar>set hls?<CR>
 map <F3> :! ~/bin/xterm &<CR><CR>
 map gb :! ~/bin/xterm -e git blame % &<CR><CR>
 map ,w :%s/\s\+$//
-map ,s %a    $i<BS>
+map ,s :bufdo :set noswapfile swapfile
 map ,S ,s<Up>:s/, /,\r/g
 nnoremap ,b :ls<CR>:b<Space>
 

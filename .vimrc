@@ -11,10 +11,11 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Added
-Plugin 'davidhalter/jedi-vim'
+" Plugin 'davidhalter/jedi-vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'udalov/kotlin-vim'
 Plugin 'nvie/vim-flake8'
+Plugin 'leafgarland/typescript-vim'
 let g:flake8_cmd="/home/matej/bin/flake8"
 
 Plugin 'Chiel92/vim-autoformat'
@@ -256,6 +257,7 @@ au BufRead,BufNewFile *.md set filetype=markdown
 "execute pathogen#infect()
 
 "let g:jedi#completions_command = "<C-N>"
+let g:jedi#goto_stubs_command = ""
 
 " CTRL-U and CTRL-W in insert mode cannot be undone.  Use CTRL-G u to first
 " break undo, so that we can undo those changes after inserting a line break.

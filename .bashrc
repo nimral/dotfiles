@@ -171,6 +171,7 @@ alias octave='octave --no-gui'
 alias pocasi='curl -4 http://wttr.in'
 alias sl='ls'
 alias mojeip="wget -q -O - 'http://mojeip.cz' | grep -oE '([0-9]+\.){3}[0-9]+' | head -1"
+alias jupy="jupyter-notebook --no-browser --ip='*'"
 
 pomucky () {
     okular $HOME/downloads/pomucky_nano_1-1-3.pdf
@@ -186,7 +187,7 @@ jupyter_remote () {
     ssh -N -L 8888:127.0.0.1:8888 "$1"
 }
 
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export JAVA_HOME=/usr/
 
 #turn off ctrl-s
@@ -194,8 +195,9 @@ stty -ixon
 
 umask 077
 
+function venv { source ~/venv/$1/bin/activate; }
+export -f venv
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/matej/.sdkman"
 [[ -s "/home/matej/.sdkman/bin/sdkman-init.sh" ]] && source "/home/matej/.sdkman/bin/sdkman-init.sh"
-
-export PYTHONPATH=$PYTHONPATH:/home/matej/mff/diplomka/cleverhans/

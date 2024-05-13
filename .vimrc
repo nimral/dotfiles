@@ -65,6 +65,9 @@ set mouse=a
 
 " indent new line as the previous one
 set autoindent
+set nocin
+set nosi
+set inde=
 
 " jump to matching string while I'm typing the pattern
 set incsearch
@@ -213,10 +216,10 @@ let @i = '%wwwvt:€klyopa, :€ku€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl€kl
 
 map ,s :bufdo :set noswapfile swapfile<CR>
 
-autocmd BufNewFile *.html 0r ~/bin/novy.html
-autocmd BufNewFile *.latex 0r ~/bin/novy.latex
-autocmd BufNewFile *.cpp 0r ~/bin/novy.cpp
-autocmd BufNewFile *.sh 0r ~/bin/novy.sh
+"autocmd BufNewFile *.html 0r ~/bin/novy.html
+"autocmd BufNewFile *.latex 0r ~/bin/novy.latex
+"autocmd BufNewFile *.cpp 0r ~/bin/novy.cpp
+"autocmd BufNewFile *.sh 0r ~/bin/novy.sh
 autocmd BufNewFile *.latex :set lbr
 autocmd BufNewFile *.txt :set lbr
 

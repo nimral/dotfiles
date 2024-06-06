@@ -8,7 +8,7 @@ call vundle#begin()
 "call vundle#begin('~/some/path/here')
 
 " let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+Plugin 'VundleVim/Vundle.vim'
 
 " Added
 " Plugin 'davidhalter/jedi-vim'
@@ -16,6 +16,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'udalov/kotlin-vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'leafgarland/typescript-vim'
+Plugin 'hashivim/vim-terraform'
 let g:flake8_cmd="/home/matej/bin/flake8"
 
 Plugin 'Chiel92/vim-autoformat'
@@ -40,6 +41,10 @@ let g:autoformat_remove_trailing_spaces = 0
 "Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
 " Avoid a name conflict with L9
 "Plugin 'user/L9', {'name': 'newL9'}
+
+" ## Add Terraform Configurations ##
+let g:terraform_align=1
+let g:terraform_fmt_on_save=1
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -274,6 +279,3 @@ let b:did_indent = 1
 "let g:ycm_global_ycm_extra_conf = '.ycm_extra_conf.py'
 
 autocmd BufRead,BufNewFile /home/matej/Dokumenty/mam/mamweb2/mamweb/*.py setlocal ts=4 sw=4 expandtab backspace=2 softtabstop=4
-
-
-

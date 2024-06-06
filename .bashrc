@@ -105,7 +105,7 @@ if [ "$TERM" != "dumb" ] && [ -x /usr/bin/dircolors ]; then
     alias ls='ls --color=auto --group-directories-first'
 fi
 
-export GREP_COLOR="1;33"
+export GREP_COLOR="mt=1;33"
 
 
 if [ "$DISPLAY" ] ; then
@@ -125,6 +125,7 @@ alias ll='ls -lh --color=auto --group-directories-first'
 alias la='ls -Al'
 
 alias lsd='ls -d */'
+alias cd..="cd .."
 
 # some apt aliases
 ainstall () {
@@ -201,3 +202,31 @@ export -f venv
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/home/matej/.sdkman"
 [[ -s "/home/matej/.sdkman/bin/sdkman-init.sh" ]] && source "/home/matej/.sdkman/bin/sdkman-init.sh"
+
+alias gimme-aws-creds="saml2aws login -a cintab --session-duration 43200 --role arn:aws:iam::433461577143:role/okta-hub-tech-engineer"
+alias gimme-aws-creds-ml="saml2aws login -a cintab-ml --session-duration 43200 --profile okta-hub-tech-engineer-ml --role arn:aws:iam::433461577143:role/okta-hub-tech-engineer-ml"
+alias gimme-aws-creds-oncall="saml2aws login -a cintab-oncall --session-duration 43200 --profile okta-hub-tech-engineer-oncall --role arn:aws:iam::433461577143:role/okta-hub-tech-engineer-oncall"
+
+alias get-pipconf='aws codeartifact --profile tech-dev login --tool pip --domain lucid-tech --repository lucid-tech --domain-owner 589251789600'
+alias get-npmrc='aws codeartifact --profile tech-dev login --tool npm --domain lucid-tech --repository lucid-tech --domain-owner 589251789600'
+
+# Login to k8s in AWS
+alias eks_dev_mkt="aws eks --profile tech-dev update-kubeconfig --name dev-use1-mkt-eks --region us-east-1"
+alias eks_pre="aws eks --profile tech-pre update-kubeconfig --name pre-use1-releng-eks --region us-east-1"
+alias eks_prod="aws eks --profile tech-prd update-kubeconfig --name prd-use1-prd-eks --region us-east-1"
+alias eks_ml_prd="aws eks --profile tech-ml update-kubeconfig --name ml-use1-prd-eks --region us-east-1"
+alias eks_all="eks_dev_mkt && eks_pre && eks_ml_prd && eks_prod"
+export PATH=$PATH:/usr/local/go/bin
+export KUBE_EDITOR=my_fav_editor
+export TERM=xterm-256color
+export PATH=$PATH:/snap/k9s/current/bin/
+export PATH=$PATH:/usr/local/sbin/
+export PATH=$PATH:$HOME/bin/samlvpn/bin/
+
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+alias login_npm='AWS_PROFILE=tech-dev aws --profile tech-dev codeartifact --region us-east-1 login --tool npm --domain lucid-tech --domain-owner 589251789600 --repository lucid-tech'

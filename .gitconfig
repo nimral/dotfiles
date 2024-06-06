@@ -1,6 +1,6 @@
 [user]
 	name = Matěj Kocián
-	email = matej.kocian@gmail.com
+	email = matej.kocian@cint.com
 [core]
 	editor = vim
 	editora = vim
@@ -26,6 +26,7 @@
     hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
     mt = mergetool
     st = status -uno
+    cint-clone = "!git clone git@github.com:lucidhq/$1.git"
 [push]
 	default = simple
     autoSetupRemote = true

@@ -1,0 +1,16 @@
+\documentclass[a4paper]{article}
+\usepackage{cmap} % should be first
+\usepackage[a4paper,left=1cm,right=1cm,top=3cm]{geometry}
+\usepackage[czech]{babel}
+\usepackage[utf8]{inputenc} % input encoding is UTF-8
+\usepackage[T1]{fontenc} % output encoding
+\pagestyle{empty}
+\usepackage{graphicx}
+\usepackage{lmodern}
+\begin{document}
+
+\begin{figure}
+\includegraphics[width=\textwidth]{img.pdf}
+\end{figure}
+
+\end{document}

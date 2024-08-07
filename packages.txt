@@ -1,0 +1,14 @@
+chromium
+feh
+gimp
+audacity
+inkscape
+atool
+ack
+git
+vim-gtk3
+pmount
+texlive
+texlive-lang-czechslovak
+texlive-latex-extra 
+ncdu

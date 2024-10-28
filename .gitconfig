@@ -4,7 +4,7 @@
 [core]
 	editor = vim
 	editora = vim
-	excludesfile = $HOME/.gitignore
+	excludesfile = ~/.gitignore
 [merge]
 	tool = vimdiff
 [diff]
@@ -27,6 +27,16 @@
     mt = mergetool
     st = status -uno
     cint-clone = "!git clone git@github.com:lucidhq/$1.git"
+    org-repo = "!f() { git remote show origin | grep \"Fetch URL\" | sed -r 's/.*://' | sed -r 's/\\..*//' ; }; f"
+    repo-name = "!f() { git org-repo | sed -r 's/.*\\///' ; }; f"
+    branch-name = rev-parse --abbrev-ref HEAD
+    org-name = "!f() { git org-repo | sed -r 's/\\/.*//' ; }; f"
+    pr = "!f() { or=`git org-repo` ; b=`git branch-name` ; chromium https://github.com/$or/pull/new/$b ; }; f"
+    amend = commit --amend --no-edit
+    capf = !git commit --amend --no-edit && git push -f
+    gh = "!f() { or=`git org-repo` ; b=`git branch-name` ; chromium https://github.com/$or/blob/$b/${GIT_PREFIX}$1 ; }; f"
+    dn = "!f() { git diff $(git status | grep modified | sed 's/^.*:   //' | head -n \"$1\" | tail -n 1) ; }; f"
+    an = "!f() { git add $(git status | grep modified | sed 's/^.*:   //' | head -n \"$1\" | tail -n 1) ; }; f"
 [push]
 	default = simple
     autoSetupRemote = true

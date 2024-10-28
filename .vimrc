@@ -17,6 +17,11 @@ Plugin 'udalov/kotlin-vim'
 Plugin 'nvie/vim-flake8'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'hashivim/vim-terraform'
+Plugin 'dense-analysis/ale'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/abolish'
+autocmd BufReadPost fugitive://* set bufhidden=delete
 let g:flake8_cmd="/home/matej/bin/flake8"
 
 Plugin 'Chiel92/vim-autoformat'
@@ -45,6 +50,11 @@ let g:autoformat_remove_trailing_spaces = 0
 " ## Add Terraform Configurations ##
 let g:terraform_align=1
 let g:terraform_fmt_on_save=1
+
+let g:ale_python_auto_pipenv = 1
+let g:ale_linters = {'python': ['ruff', 'mypy']}
+nmap <silent> <leader>n :ALENext<cr>
+nmap <silent> <leader>at :ALEToggle<cr>
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -127,7 +137,7 @@ filetype plugin on
 runtime plugin/matchparen.vim
 DoMatchParen
 
-let mapleader = ","
+let mapleader=","
 
 " ctrl-s saves
 map  :w
@@ -165,6 +175,9 @@ imap <F9> :w:make:cw
 
 " save file with sudo when opened read-only
 cmap w!! %!sudo tee > /dev/null %
+
+nmap <silent> <leader>gh :!git gh %<cr>
+
 
 "cmap json .! python -mjson.tool
 

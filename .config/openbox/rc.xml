@@ -489,7 +489,7 @@
         <command>xfrun4</command>
       </action>
     </keybind>
-    <keybind key="Print">
+    <keybind key="C-Print">
       <action name="Execute">
         <startupnotify>
           <enabled>true</enabled>

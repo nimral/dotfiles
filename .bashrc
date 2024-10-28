@@ -208,7 +208,7 @@ alias gimme-aws-creds-ml="saml2aws login -a cintab-ml --session-duration 43200 -
 alias gimme-aws-creds-oncall="saml2aws login -a cintab-oncall --session-duration 43200 --profile okta-hub-tech-engineer-oncall --role arn:aws:iam::433461577143:role/okta-hub-tech-engineer-oncall"
 
 alias get-pipconf='aws codeartifact --profile tech-dev login --tool pip --domain lucid-tech --repository lucid-tech --domain-owner 589251789600'
-alias get-npmrc='aws codeartifact --profile tech-dev login --tool npm --domain lucid-tech --repository lucid-tech --domain-owner 589251789600'
+alias get-npmrc='aws codeartifact --profile tech-dev login --tool npm --domain lucid-tech --repository lucid-tech --domain-owner 589251789600 && mv .npmrc /home/matej/'
 
 # Login to k8s in AWS
 alias eks_dev_mkt="aws eks --profile tech-dev update-kubeconfig --name dev-use1-mkt-eks --region us-east-1"
@@ -217,11 +217,26 @@ alias eks_prod="aws eks --profile tech-prd update-kubeconfig --name prd-use1-prd
 alias eks_ml_prd="aws eks --profile tech-ml update-kubeconfig --name ml-use1-prd-eks --region us-east-1"
 alias eks_all="eks_dev_mkt && eks_pre && eks_ml_prd && eks_prod"
 export PATH=$PATH:/usr/local/go/bin
-export KUBE_EDITOR=my_fav_editor
+export KUBE_EDITOR=vim
 export TERM=xterm-256color
 export PATH=$PATH:/snap/k9s/current/bin/
 export PATH=$PATH:/usr/local/sbin/
 export PATH=$PATH:$HOME/bin/samlvpn/bin/
+
+kube () {
+    current=`kubectx -c`
+    iden=`kubectx | grep -E "cluster[^-]*$1"`
+    if [ "$current" != "$iden" ] ; then
+        kubectx "$iden"
+    fi
+}
+
+k () {
+    if [ "$#" -eq 1 ] ; then
+        kube "$1"
+    fi
+    k9s
+}
 
 
 export PYENV_ROOT="$HOME/.pyenv"

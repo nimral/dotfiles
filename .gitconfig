@@ -37,6 +37,8 @@
     gh = "!f() { or=`git org-repo` ; b=`git branch-name` ; chromium https://github.com/$or/blob/$b/${GIT_PREFIX}$1 ; }; f"
     dn = "!f() { git diff $(git status | grep modified | sed 's/^.*:   //' | head -n \"$1\" | tail -n 1) ; }; f"
     an = "!f() { git add $(git status | grep modified | sed 's/^.*:   //' | head -n \"$1\" | tail -n 1) ; }; f"
+    merged-branch = "!f() { branch_name=`git branch-name` ; git checkout main && git pull && git br -d $branch_name ; }; f"
+    turbogrep = "!f() { git grep \"$@\" $(git rev-list --all) ; }; f"
 [push]
 	default = simple
     autoSetupRemote = true

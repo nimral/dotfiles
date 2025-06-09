@@ -759,12 +759,12 @@
       <mousebind button="A-Down" action="Click">
         <action name="DesktopNext"/>
       </mousebind>
-      <mousebind button="C-A-Up" action="Click">
-        <action name="DesktopPrevious"/>
-      </mousebind>
-      <mousebind button="C-A-Down" action="Click">
-        <action name="DesktopNext"/>
-      </mousebind>
+      <!-- <mousebind button="C-A-Up" action="Click"> -->
+      <!--   <action name="DesktopPrevious"/> -->
+      <!-- </mousebind> -->
+      <!-- <mousebind button="C-A-Down" action="Click"> -->
+      <!--   <action name="DesktopNext"/> -->
+      <!-- </mousebind> -->
       <mousebind button="A-S-Up" action="Click">
         <action name="SendToDesktopPrevious"/>
       </mousebind>

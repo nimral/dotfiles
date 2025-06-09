@@ -12,3 +12,5 @@ texlive
 texlive-lang-czechslovak
 texlive-latex-extra 
 ncdu
+shotcut
+rar

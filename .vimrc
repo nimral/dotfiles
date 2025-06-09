@@ -55,6 +55,10 @@ let g:ale_python_auto_pipenv = 1
 let g:ale_linters = {'python': ['ruff', 'mypy']}
 nmap <silent> <leader>n :ALENext<cr>
 nmap <silent> <leader>at :ALEToggle<cr>
+nmap <silent> <leader>m :cnext<cr>
+nmap <silent> <leader>M :cprev<cr>
+nmap <silent> <leader>g :Ggrep <c-r><c-w><cr><cr>
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -292,3 +296,5 @@ let b:did_indent = 1
 "let g:ycm_global_ycm_extra_conf = '.ycm_extra_conf.py'
 
 autocmd BufRead,BufNewFile /home/matej/Dokumenty/mam/mamweb2/mamweb/*.py setlocal ts=4 sw=4 expandtab backspace=2 softtabstop=4
+
+set guifont=Monospace\ 14

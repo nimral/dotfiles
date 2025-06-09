@@ -190,6 +190,7 @@ jupyter_remote () {
 
 export PATH=$HOME/bin:$HOME/.local/bin:$PATH
 export JAVA_HOME=/usr/
+export XDG_CONFIG_HOME="$HOME/.config"
 
 #turn off ctrl-s
 stty -ixon
@@ -238,10 +239,19 @@ k () {
     k9s
 }
 
-
-export PYENV_ROOT="$HOME/.pyenv"
-[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+# export PYENV_ROOT="$HOME/.pyenv"
+# [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+# eval "$(pyenv init -)"
+# eval "$(pyenv virtualenv-init -)"
 
 alias login_npm='AWS_PROFILE=tech-dev aws --profile tech-dev codeartifact --region us-east-1 login --tool npm --domain lucid-tech --domain-owner 589251789600 --repository lucid-tech'
+
+alias artifact-pip="AWS_PROFILE=tech-dev aws codeartifact login --tool pip --domain lucid-tech --repository lucid-tech --domain-owner 589251789600"
+alias login_pip='artifact-pip && uv_export_url'
+
+function uv_export_url() {
+    export UV_INDEX=https://pypi.org/simple
+    export UV_DEFAULT_INDEX=$(grep -Po '(?<=index-url = ).*' ~/.config/pip/pip.conf)
+}
+# Run the uv_export_url with every new terminal
+eval uv_export_url

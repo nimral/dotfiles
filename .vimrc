@@ -298,3 +298,6 @@ let b:did_indent = 1
 autocmd BufRead,BufNewFile /home/matej/Dokumenty/mam/mamweb2/mamweb/*.py setlocal ts=4 sw=4 expandtab backspace=2 softtabstop=4
 
 set guifont=Monospace\ 14
+
+
+au FileType rust setlocal nosmartindent

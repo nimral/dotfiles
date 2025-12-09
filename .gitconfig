@@ -22,7 +22,7 @@
     dw = diff --word-diff
     dcw = diff --cached --word-diff
     sh = show
-    co = checkout
+    co = "!f() { : git checkout ; [ \"$1\" != '.' ] && git checkout \"$@\" || echo 'git checkout . is like git reset --hard' ; }; f"
     ci = commit
     s = status
     a = add
@@ -44,6 +44,7 @@
     merged-branch = "!f() { branch_name=`git branch-name` ; git checkout main || git checkout master && git pull && git br -d $branch_name ; }; f"
     turbogrep = "!f() { git grep \"$@\" $(git rev-list --all) ; }; f"
     get-from-rev = "!f() { git show \"$1\":\"$2\" > $(dirname \"$2\")/\"$1\"_$(basename \"$2\") ; }; f"
+    chp = cherry-pick
 [push]
 	default = simple
     autoSetupRemote = true
